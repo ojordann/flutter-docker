@@ -18,9 +18,7 @@ RUN curl -O https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
 ENV ANDROID_HOME="/usr/lib/Android/sdk"
 
 # Get Flutter
-RUN curl -O https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_v1.0.0-stable.tar.xz \
-    && tar xf flutter_linux_v1.0.0-stable.tar.xz --directory=/usr/lib \
-    && rm flutter_linux_v1.0.0-stable.tar.xz
+RUN git clone -b dev https://github.com/flutter/flutter.git /usr/lib/flutter
 
 ENV PATH="${ANDROID_HOME}/tools/bin:/usr/lib/flutter/bin:${PATH}"
 
@@ -28,10 +26,8 @@ ENV PATH="${ANDROID_HOME}/tools/bin:/usr/lib/flutter/bin:${PATH}"
 RUN yes | sdkmanager --licenses \
     && sdkmanager "build-tools;28.0.3" "platform-tools" "platforms;android-28"
 
-# Use latest Flutter
+# Configure Flutter
 RUN flutter config --no-analytics \
-    && flutter channel dev \
-    && flutter upgrade \
     && flutter doctor
 
 WORKDIR /home
