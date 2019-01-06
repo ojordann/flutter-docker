@@ -29,6 +29,8 @@ RUN yes | sdkmanager --licenses \
     && sdkmanager "build-tools;28.0.3" "platform-tools" "platforms;android-28"
 
 # Test if it all worked!
-RUN flutter doctor
+RUN flutter channel dev \
+    && flutter upgrade \
+    && flutter doctor
 
 WORKDIR /home
