@@ -28,8 +28,9 @@ ENV PATH="${ANDROID_HOME}/tools/bin:/usr/lib/flutter/bin:${PATH}"
 RUN yes | sdkmanager --licenses \
     && sdkmanager "build-tools;28.0.3" "platform-tools" "platforms;android-28"
 
-# Test if it all worked!
-RUN flutter channel dev \
+# Use latest Flutter
+RUN flutter config --no-analytics \
+    && flutter channel dev \
     && flutter upgrade \
     && flutter doctor
 
