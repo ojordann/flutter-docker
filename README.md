@@ -1,6 +1,4 @@
 # flutter-docker
-Flutter Docker Image
+Flutter Docker Build Image
 
-Usage
-
-```docker pull ojordann/flutter:latest```
+Usage ```docker pull ojordann/flutter:master```
