@@ -22,7 +22,7 @@ RUN yes | sdkmanager --licenses \
     && sdkmanager "build-tools;28.0.3" "platform-tools" "platforms;android-28"
 
 # Get Latest Flutter
-RUN git clone -b dev https://github.com/flutter/flutter.git /usr/lib/flutter
+RUN git clone https://github.com/flutter/flutter.git /usr/lib/flutter
 
 ENV PATH="${ANDROID_HOME}/tools/bin:/usr/lib/flutter/bin:${PATH}"
 
