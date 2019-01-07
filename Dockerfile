@@ -2,6 +2,10 @@ FROM ubuntu:18.04
 
 LABEL maintainer="ojordann"
 
+# Environment Variables
+ENV ANDROID_HOME="/usr/lib/Android/sdk"
+ENV PATH="${ANDROID_HOME}/tools/bin:/usr/lib/flutter/bin:${PATH}"
+
 # Install Utilities
 RUN apt-get update && apt-get upgrade
 RUN apt-get install -y apt-utils curl unzip xz-utils lib32stdc++6 git
@@ -11,11 +15,9 @@ RUN apt-get install -y openjdk-8-jdk
 
 # Get Android SDK Tools
 RUN curl -O https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip \
-    && mkdir -p /usr/lib/Android/sdk \
-    && unzip sdk-tools-linux-4333796.zip -d /usr/lib/Android/sdk \
+    && mkdir -p "${ANDROID_HOME}" \
+    && unzip sdk-tools-linux-4333796.zip -d "${ANDROID_HOME}" \
     && rm sdk-tools-linux-4333796.zip
-
-ENV ANDROID_HOME="/usr/lib/Android/sdk"
 
 # Get Android Build Dependencies
 RUN yes | sdkmanager --licenses \
@@ -23,8 +25,6 @@ RUN yes | sdkmanager --licenses \
 
 # Get Latest Flutter
 RUN git clone https://github.com/flutter/flutter.git /usr/lib/flutter
-
-ENV PATH="${ANDROID_HOME}/tools/bin:/usr/lib/flutter/bin:${PATH}"
 
 # Configure Flutter
 RUN flutter config --no-analytics \
