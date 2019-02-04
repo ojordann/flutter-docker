@@ -4,9 +4,9 @@ jobs:
    machine: true
    steps:
      - checkout
-     
+
      - run: |
-         docker login -u $DOCKER_USER -p $DOCKER_PASS
+         docker login -u $DOCKER_USER --password-stdin < $DOCKER_PASS
 
      # build images
      - run: ./build.sh
