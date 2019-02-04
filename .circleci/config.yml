@@ -1,15 +1,15 @@
 version: 2
 jobs:
- build:
-   machine: true
-   steps:
-     - checkout
+  build:
+    machine: true
+    steps:
+      - checkout
 
-     - run: |
-         docker login -u $DOCKER_USER --password-stdin < $DOCKER_PASS
+      - run: |
+          docker login -u $DOCKER_USER --password-stdin < $DOCKER_PASS
 
-     # build images
-     - run: ./build.sh
+      # build images
+      - run: ./build.sh
 
-     # push images
-     - run: ./push.sh
+      # push images
+      - run: ./push.sh
