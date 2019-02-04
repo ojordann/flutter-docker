@@ -1,7 +1,7 @@
 # flutter-docker
 Docker Build Images for [Flutter](https://flutter.io)
 
-Usage:  
+## Usage  
 `docker pull ojordann/flutter:master`  
 `docker pull ojordann/flutter:dev`  
 `docker pull ojordann/flutter:beta`  
