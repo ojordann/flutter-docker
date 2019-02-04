@@ -5,8 +5,7 @@ jobs:
     steps:
       - checkout
 
-      - run: |
-          docker login -u $DOCKER_USER --password-stdin < $DOCKER_PASS
+      - run: echo "$DOCKER_PASS" | docker login -u $DOCKER_USER --password-stdin
 
       # build images
       - run: ./build.sh
